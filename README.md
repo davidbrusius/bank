@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/davidbrusius/bank.svg?branch=master)](https://travis-ci.org/davidbrusius/bank)
+
 # Bank
 
 To start your Phoenix server:
