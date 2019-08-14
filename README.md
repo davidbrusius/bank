@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/davidbrusius/bank.svg?branch=master)](https://travis-ci.org/davidbrusius/bank)
+[![Build Status](https://travis-ci.org/davidbrusius/bank.svg?branch=master)](https://travis-ci.org/davidbrusius/bank) [![SourceLevel](https://app.sourcelevel.io/github/davidbrusius/bank.svg)](https://app.sourcelevel.io/github/davidbrusius/bank)
 
 # Bank
 
