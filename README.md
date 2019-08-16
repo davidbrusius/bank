@@ -10,12 +10,26 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+# API Endpoints
 
-## Learn more
+## POST /api/auth/token
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Authenticates the user using `email` and `password` credentials and generates an auth token which can be used in subsequent calls to authenticated API endpoints.
+
+### Parameters
+
+Name | Required | Type | Description
+-----|----------|------|------------
+`email`    | required | string | A user email    |
+`password` | required | string | A user password |
+
+### Response
+
+**Status**: `201 Success`
+
+**Body**:
+```json
+{
+  "token":  "auth-token"
+}
+```
