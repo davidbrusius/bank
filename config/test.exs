@@ -14,5 +14,10 @@ config :bank, BankWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+# Speed up tests with Argon2 encryption
+config :argon2_elixir,
+  t_cost: 1,
+  m_cost: 8
+
 # Print only warnings and errors during test
 config :logger, level: :warn

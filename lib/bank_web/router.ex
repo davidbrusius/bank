@@ -7,5 +7,9 @@ defmodule BankWeb.Router do
 
   scope "/api", BankWeb do
     pipe_through :api
+
+    scope "/auth", Auth do
+      post "/token", TokenController, :create
+    end
   end
 end
