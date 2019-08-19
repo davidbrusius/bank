@@ -8,6 +8,7 @@ defmodule Bank.Users.User do
 
   @type t :: %__MODULE__{
           id: binary(),
+          accounts: [Bank.Accounts.Account.t()] | %Ecto.Association.NotLoaded{},
           email: String.t(),
           password_hash: String.t(),
           inserted_at: DateTime.t(),
@@ -15,6 +16,8 @@ defmodule Bank.Users.User do
         }
 
   schema "users" do
+    has_many :accounts, Bank.Accounts.Account
+
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string

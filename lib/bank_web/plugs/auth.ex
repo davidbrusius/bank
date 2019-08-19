@@ -13,7 +13,7 @@ defmodule BankWeb.Plugs.Auth do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
          {:ok, user_id} <- Auth.verify_auth_token(token),
          {:ok, user} <- Users.get_by(:id, user_id) do
-      assign(conn, :current_user, Map.take(user, [:id, :email]))
+      assign(conn, :current_user, user)
     else
       _ ->
         conn

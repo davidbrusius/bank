@@ -23,6 +23,11 @@ defmodule BankWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint BankWeb.Endpoint
+
+      def authenticated_conn(user_id) do
+        token = Bank.Auth.generate_auth_token(user_id)
+        put_req_header(build_conn(), "authorization", "Bearer #{token}")
+      end
     end
   end
 

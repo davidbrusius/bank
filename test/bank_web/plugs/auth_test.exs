@@ -15,7 +15,8 @@ defmodule BankWeb.Plugs.AuthTest do
       |> put_req_header("authorization", "Bearer #{token}")
       |> AuthPlug.call(%{})
 
-    assert conn.assigns.current_user == %{id: user.id, email: user.email}
+    assert conn.assigns.current_user.id == user.id
+    assert conn.assigns.current_user.email == user.email
   end
 
   test "halts the connection and return unauthorized response when Bearer token is invalid" do
