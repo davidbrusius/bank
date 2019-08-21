@@ -20,8 +20,7 @@ defmodule BankWeb.Router do
   scope "/api", BankWeb do
     pipe_through [:api, :ensure_authenticated]
 
-    scope "/accounts", Account do
-      post "/transfer", TransferController, :create
-    end
+    resources "/accounts", AccountController, only: [:show], param: "number"
+    post "/accounts/transfer", Account.TransferController, :create
   end
 end

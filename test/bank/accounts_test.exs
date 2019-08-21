@@ -50,6 +50,33 @@ defmodule Bank.AccountsTest do
     end
   end
 
+  describe "get_by/1" do
+    test "fetches an account by its number" do
+      user = UsersHelper.create_user()
+      AccountsHelper.create_account(user, 100, %{number: "1234"})
+
+      {:ok, account} = Accounts.get_by(user, :number, "1234")
+
+      assert account.balance == %Money{amount: 10_000, currency: :BRL}
+      assert account.number == "1234"
+      assert account.user_id == user.id
+    end
+
+    test "returns not found when account does not belong to user" do
+      user = UsersHelper.create_user()
+      another_user = UsersHelper.create_user(%{email: "jane.doe@test.com"})
+      AccountsHelper.create_account(another_user, 100, %{number: "1234"})
+
+      assert Accounts.get_by(user, :number, "1234") == {:error, :not_found}
+    end
+
+    test "returns not found when account does not exist" do
+      user = UsersHelper.create_user()
+
+      assert Accounts.get_by(user, :number, "1234") == {:error, :not_found}
+    end
+  end
+
   describe "deposit/2" do
     test "performs a deposit operation for the given account number" do
       account = AccountsHelper.create_account()
