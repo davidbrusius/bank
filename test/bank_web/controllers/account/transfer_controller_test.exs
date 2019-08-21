@@ -28,7 +28,7 @@ defmodule BankWeb.Account.TransferControllerTest do
                "message" => "Successfully transferred amount to destination account.",
                "source_account_number" => source_account.number,
                "dest_account_number" => dest_account.number,
-               "amount" => "R$25.50"
+               "amount" => "R$ 25.50"
              }
     end
 

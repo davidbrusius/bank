@@ -27,6 +27,19 @@ defmodule Bank.Accounts do
   end
 
   @doc """
+  Fetches a user account from the database, filtering by the given field.
+  """
+  @spec get_by(User.t(), atom(), any()) :: {:ok, Account.t()} | {:error, atom()}
+  def get_by(user, field, value) do
+    query = from a in Account, where: a.user_id == ^user.id and field(a, ^field) == ^value
+
+    case Repo.one(query) do
+      nil -> {:error, :not_found}
+      account -> {:ok, account}
+    end
+  end
+
+  @doc """
   Performs a deposit operation on the provided account. This operation will add a new Transaction to
   the account and then recalculate the account balance adding the amount to it. Deposit operations are
   performed with a lock in the account record to prevent issues while calculating the final account balance.

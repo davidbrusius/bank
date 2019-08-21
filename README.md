@@ -12,6 +12,11 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 # API Endpoints
 
+🔐 **Authentication**
+
+Requests to authenticated endpoints are authorized through a Bearer token that should be provided in the `Authorization` HTTP header. Check the [`/api/auth/token`](#post-apiauthtoken) endpoint for further details on how to generate Bearer tokens.
+
+
 ## POST /api/auth/token
 
 Authenticates the user using `email` and `password` credentials and generates an auth token which can be used in subsequent calls to authenticated API endpoints.
@@ -25,12 +30,53 @@ Name       | Required | Type   | Description     |
 
 ### Response
 
-**Status**: `201 Success`
+**Status**: `201 Created`
 
 **Body**:
 ```json
 {
   "token":  "auth-token"
+}
+```
+
+## GET /api/accounts/:number
+
+🔐 **Authenticated**
+
+Return informations about the account such as its balance and number.
+
+### Path Parameters
+
+Name        | Required | Type   | Description        |
+------------|----------|--------|--------------------|
+`number`    | required | string | The account number |
+
+### Response
+
+When account exists.
+
+**Status**: `200 Success`
+
+**Body**:
+```json
+{
+  "account": {
+    "balance": "R$ 520.00",
+    "number": "1234"
+  }
+}
+```
+
+When account does not exist.
+
+**Status**: `404 Not Found`
+
+**Body**:
+```json
+{
+  "error": {
+    "message": "Unable to find account with number 1234."
+  }
 }
 ```
 
@@ -52,7 +98,7 @@ Name                     | Required | Type   | Description                      
 
 When all transfer validation are met.
 
-**Status**: `201 Success`
+**Status**: `201 Created`
 
 **Body**:
 ```json
