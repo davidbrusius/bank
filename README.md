@@ -2,13 +2,29 @@
 
 # Bank
 
-To start your Phoenix server:
+Simple banking API implementend using [Elixir](http://elixir-lang.org) and [Phoenix](https://phoenixframework.org/).
 
+# Contributing
+
+Dependencies:
+
+  * Elixir 1.9.1
+  * Erlang 22.0.7
+  * Postgres 11
+
+Setup the application:
+
+  * Clone this repo `git clone git@github.com:davidbrusius/bank.git`
+  * Access the repo directory `cd bank`
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Create, migrate and add seed data to your database with `mix ecto.setup`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+To start your Phoenix server run `mix phx.server`.
+
+Now you can start sending requests to the API on `http://localhost:4000`.
+
+You can use the users and accounts created by the seeds file (`priv/repo/seeds.exs`) to start making some requests to the API. Alternatively, you can also create your own users and accounts using the commands available in the seeds file.
+
 
 # API Endpoints
 
