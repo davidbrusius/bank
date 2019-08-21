@@ -18,8 +18,8 @@ Authenticates the user using `email` and `password` credentials and generates an
 
 ### Parameters
 
-Name | Required | Type | Description
------|----------|------|------------
+Name       | Required | Type   | Description     |
+-----------|----------|--------|-----------------|
 `email`    | required | string | A user email    |
 `password` | required | string | A user password |
 
@@ -31,5 +31,50 @@ Name | Required | Type | Description
 ```json
 {
   "token":  "auth-token"
+}
+```
+
+## POST /api/accounts/transfer
+
+🔐 **Authenticated**
+
+Transfer the given amount from source account to destination account.
+
+### Parameters
+
+Name                     | Required | Type   | Description                           |
+-------------------------|----------|--------|---------------------------------------|
+`source_account_number`  | required | string | Source account to withdraw amount     |
+`dest_account_number`    | required | string | Destination account to deposit amount |
+`amount`                 | required | float  | The amount to be transferred          |
+
+### Response
+
+When all transfer validation are met.
+
+**Status**: `201 Success`
+
+**Body**:
+```json
+{
+  "message": "Successfully transferred amount to destination account.",
+  "dest_account_number": "1235",
+  "source_account_number": "1234",
+  "amount": "R$100.00"
+}
+```
+
+When a transfer validation like source account does not have enough funds to transfer fails.
+
+**Status**: `422 Unprocessable entity`
+
+**Body**:
+```json
+{
+  "error": {
+    "source_account": [
+      "does not have enough funds to transfer"
+    ]
+  }
 }
 ```
